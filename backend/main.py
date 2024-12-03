@@ -134,7 +134,7 @@ async def atualizar_medico(medico_id: int, medico_atualizacao: AtualizarMedico):
             UPDATE medico
             SET nome = COALESCE($1, nome),
                 crm = COALESCE($2, crm),
-                especialidade = COALESCE($3, especialidade),
+                especialidade = COALESCE($3, especialidade)
             WHERE id = $4
         """
         await conn.execute(
@@ -242,7 +242,7 @@ async def atualizar_consulta(consulta_id: int, consulta_atualizacao: AtualizarCo
                 data = COALESCE($2, data),
                 valor = COALESCE($3, valor),
                 tipo = COALESCE($4, tipo),
-                convenio = COALESCE($5, convenio),
+                convenio = COALESCE($5, convenio)
             WHERE id = $4
         """
         await conn.execute(
