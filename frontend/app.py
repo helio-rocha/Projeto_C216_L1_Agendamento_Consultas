@@ -34,6 +34,8 @@ def inserir_medico():
     
     if response.status_code == 201:
         return redirect(url_for('listar_medicos'))
+    elif response.status_code == 400:
+        return "Já existe um médico cadastrado com esse CRM", 400
     else:
         return "Erro ao inserir médico", 500
 
@@ -89,6 +91,16 @@ def excluir_medico(medico_id):
     else:
         return "Erro ao excluir médico", 500
 
+# Rota para excluir uma consulta
+@app.route('/excluir_consulta/<int:consulta_id>', methods=['POST'])
+def excluir_consulta(consulta_id):
+    response = requests.delete(f"{API_BASE_URL}/api/v1/consultas/{consulta_id}")
+    
+    if response.status_code == 200  :
+        return redirect(url_for('listar_consultas'))
+    else:
+        return "Erro ao excluir consulta", 500
+
 # Rota para exibir o cadastro de novas consultas
 @app.route('/marcar_consulta/<int:medico_id>', methods=['GET'])
 def marcar_consulta_form(medico_id):
@@ -110,13 +122,48 @@ def marcar_consulta(medico_id):
         'convenio': convenio,
     }
 
-    # ============ NO BACK DEVE ACEITAR O ID NA URL ==========
-    response = requests.put(f"{API_BASE_URL}/api/v1/consultas/{medico_id}", json=payload)
+    response = requests.post(f"{API_BASE_URL}/api/v1/consultas/", json=payload)
+    
+    if response.status_code == 201:
+        return redirect(url_for('listar_consultas'))
+    elif response.status_code == 400:
+        return "O Médico já está ocupado nesse horário.", 400
+    else:
+        return "Erro ao marcar a consulta", 500
+
+# Rota para exibir o formulário de edição de consultas
+@app.route('/atualizar_consulta/<int:consulta_id>', methods=['GET'])
+def atualizar_consulta_form(consulta_id):
+    response = requests.get(f"{API_BASE_URL}/api/v1/consultas/")
+    #filtrando apenas o componente correspondente ao ID
+    consultas = [consulta for consulta in response.json() if consulta['id'] == consulta_id]
+    if len(consultas) == 0:
+        return "Consulta não encontrado", 404
+    consulta = consultas[0]
+    return render_template('atualizar_consulta.html', consulta=consulta)
+
+# Rota para enviar os dados do formulário de edição de consulta para a API
+@app.route('/atualizar_consulta/<int:consulta_id>', methods=['POST'])
+def atualizar_consulta(consulta_id):
+    data = request.form['data']
+    valor = request.form['valor']
+    tipo = request.form['tipo']
+    convenio = request.form['convenio']
+
+    payload = {
+        'id': consulta_id,
+        'data': data,
+        'valor': valor,
+        'tipo' : tipo,
+        'convenio' : convenio,
+    }
+
+    response = requests.patch(f"{API_BASE_URL}/api/v1/consultas/{consulta_id}", json=payload)
     
     if response.status_code == 200:
         return redirect(url_for('listar_consultas'))
     else:
-        return "Erro ao marcar a consulta", 500
+        return "Erro ao atualizar consulta", 500
 
 # Rota para listar todas as consultas
 @app.route('/lista_consultas', methods=['GET'])
@@ -126,7 +173,7 @@ def listar_consultas():
         consultas = response.json()
     except:
         consultas = []
-    return render_template('lista_consultas.html', vendas=consultas)
+    return render_template('lista_consultas.html', consultas=consultas)
 
 #Rota para resetar o database
 @app.route('/reset-database', methods=['GET'])
@@ -137,7 +184,6 @@ def resetar_database():
         return render_template('confirmacao.html')
     else:
         return "Erro ao resetar o database", 500
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000, host='0.0.0.0')

@@ -34,16 +34,25 @@
                 <th>Valor da consulta</th>
                 <th>Tipo</th>
                 <th>Convênio</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
             {% for consulta in consultas %}
             <tr>
-                <td>{{ consulta.medico_id }}</td>
+                <td>{{ consulta.nome_medico }}</td>
                 <td>{{ consulta.data }}</td>
                 <td>{{ consulta.valor }}</td>
                 <td>{{ consulta.tipo }}</td>
                 <td>{{ consulta.convenio }}</td>
+                <td class="d-flex gap-2">
+                    <form action="/excluir_consulta/{{ consulta.id }}" method="POST">
+                        <input type="submit" value="Excluir" class="btn btn-danger">
+                    </form>
+                    <form action="/atualizar_consulta/{{ consulta.id }}" method="GET">
+                        <input type="submit" value="Atualizar" class="btn btn-primary">
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

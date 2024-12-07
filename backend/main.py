@@ -22,12 +22,12 @@ class Medico(BaseModel):
 
 class Consulta(BaseModel):
     id: Optional[int] = None
-    medico_id: str
+    medico_id: int
+    nome_medico: Optional[str] = None
     data: str
     valor: str
     tipo: str
     convenio: str
-    valor: str
 
 class MedicoBase(BaseModel):
     nome: str
@@ -42,7 +42,7 @@ class AtualizarMedico(BaseModel):
 
 # Modelo para atualizar atributos de uma Consulta (exceto o ID)
 class AtualizarConsulta(BaseModel):
-    medico_id: Optional[str] = None
+    medico_id: Optional[int] = None
     data: Optional[str] = None
     valor: Optional[str] = None
     tipo: Optional[str] = None
@@ -67,9 +67,10 @@ async def medico_existe(crm: str, conn: asyncpg.Connection):
         raise HTTPException(status_code=500, detail=f"Falha ao verificar se o médico existe: {str(e)}")
 
 # Função para verificar se a consulta existe usando o crm do médico
-async def consulta_existe(medico_id: str, data:str, conn: asyncpg.Connection):
+async def consulta_existe(medico_id: int, data:str, conn: asyncpg.Connection):
+    data = data.replace("T", " ")
     try:
-        query = "SELECT * FROM consultas WHERE medico_id = $1, data = $2"
+        query = "SELECT * FROM consultas WHERE medico_id = $1 AND data = $2"
         result = await conn.fetchval(query, medico_id, data)
         return result is not None
     except Exception as e:
@@ -184,13 +185,14 @@ async def resetar_medicos():
 # 8. Criar uma nova consulta
 @app.post("/api/v1/consultas/", status_code=201)
 async def adicionar_consulta(consulta: Consulta):
+    consulta.data = consulta.data.replace("T", " ")
     conn = await get_database()
     if await consulta_existe(consulta.medico_id, consulta.data, conn):
         raise HTTPException(status_code=400, detail="O Médico já está ocupado nesse horário.")
     try:
         query = "INSERT INTO consultas (medico_id, data, valor, tipo, convenio) VALUES ($1, $2, $3, $4, $5)"
         async with conn.transaction():
-            result = await conn.execute(query, consulta.medico_id, consulta.data, consulta.valor, consulta.tipo, consulta.convenio)
+            result = await conn.execute(query, consulta.medico_id, str(consulta.data), consulta.valor, consulta.tipo, consulta.convenio)
             return {"message": "Consulta adicionada com sucesso!"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Falha ao adicionar a consulta: {str(e)}")
@@ -203,7 +205,7 @@ async def listar_consultas():
     conn = await get_database()
     try:
         # Buscar todas as consultas no banco de dados
-        query = "SELECT * FROM consultas"
+        query = "SELECT A.*, B.nome AS nome_medico FROM consultas A INNER JOIN medico B ON B.ID = A.medico_id"
         rows = await conn.fetch(query)
         consultas = [dict(row) for row in rows]
         return consultas
@@ -230,20 +232,20 @@ async def atualizar_consulta(consulta_id: int, consulta_atualizacao: AtualizarCo
     conn = await get_database()
     try:
         # Verificar se a consulta existe
-        query = "SELECT * FROM consulta WHERE id = $1"
+        query = "SELECT A.*, B.nome AS nome_medico FROM consultas A INNER JOIN medico B ON B.ID = A.medico_id WHERE A.id = $1"
         consulta = await conn.fetchrow(query, consulta_id)
         if consulta is None:
             raise HTTPException(status_code=404, detail="Consulta não encontrada.")
 
         # Atualizar apenas os campos fornecidos
         update_query = """
-            UPDATE consulta
+            UPDATE consultas
             SET medico_id = COALESCE($1, medico_id),
                 data = COALESCE($2, data),
                 valor = COALESCE($3, valor),
                 tipo = COALESCE($4, tipo),
                 convenio = COALESCE($5, convenio)
-            WHERE id = $4
+            WHERE id = $6
         """
         await conn.execute(
             update_query,
@@ -264,7 +266,7 @@ async def remover_consulta(consulta_id: int):
     conn = await get_database()
     try:
         # Verificar se a consulta existe
-        query = "SELECT * FROM consultas WHERE id = $1"
+        query = "SELECT A.*, B.nome AS nome_medico FROM consultas A INNER JOIN medico B ON B.ID = A.medico_id WHERE A.id = $1"
         consulta = await conn.fetchrow(query, consulta_id)
         if consulta is None:
             raise HTTPException(status_code=404, detail="Consulta não encontrada.")
