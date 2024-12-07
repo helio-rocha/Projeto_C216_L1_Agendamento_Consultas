@@ -110,7 +110,7 @@ def marcar_consulta_form(medico_id):
 @app.route('/marcar_consulta/<int:medico_id>', methods=['POST'])
 def marcar_consulta(medico_id):
     data = request.form['data']
-    valor = request.form['valor']
+    valor = float(request.form['valor'])
     tipo = request.form['tipo']
     convenio = request.form['convenio']
 
@@ -146,7 +146,7 @@ def atualizar_consulta_form(consulta_id):
 @app.route('/atualizar_consulta/<int:consulta_id>', methods=['POST'])
 def atualizar_consulta(consulta_id):
     data = request.form['data']
-    valor = request.form['valor']
+    valor = float(request.form['valor'])
     tipo = request.form['tipo']
     convenio = request.form['convenio']
 

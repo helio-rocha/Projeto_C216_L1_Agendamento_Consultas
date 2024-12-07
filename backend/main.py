@@ -25,7 +25,7 @@ class Consulta(BaseModel):
     medico_id: int
     nome_medico: Optional[str] = None
     data: str
-    valor: str
+    valor: float
     tipo: str
     convenio: str
 
@@ -44,7 +44,7 @@ class AtualizarMedico(BaseModel):
 class AtualizarConsulta(BaseModel):
     medico_id: Optional[int] = None
     data: Optional[str] = None
-    valor: Optional[str] = None
+    valor: Optional[float] = None
     tipo: Optional[str] = None
     convenio: Optional[str] = None
 

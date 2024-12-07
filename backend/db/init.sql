@@ -12,7 +12,7 @@ CREATE TABLE "consultas" (
     "id" SERIAL PRIMARY KEY,
     "medico_id" INTEGER REFERENCES medico(id) ON DELETE CASCADE,
     "data" VARCHAR(255) NOT NULL,
-    "valor" VARCHAR(255) NOT NULL,
+    "valor" FLOAT NOT NULL,
     "tipo" VARCHAR(255) NOT NULL,
     "convenio" VARCHAR(255) NOT NULL
 );
