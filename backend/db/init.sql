@@ -17,6 +17,6 @@ CREATE TABLE "consultas" (
     "convenio" VARCHAR(255) NOT NULL
 );
 
-INSERT INTO "medico" ("nome", "crm", "especialidade") VALUES ('Batatinha', '123', 'Clínico Geral');
-INSERT INTO "medico" ("nome", "crm", "especialidade") VALUES ('Zan', '456', 'Neurologista');
-INSERT INTO "medico" ("nome", "crm", "especialidade") VALUES ('RenZo', '789', 'Cardiologista');
+INSERT INTO "medico" ("nome", "crm", "especialidade") VALUES ('Lucas', '123', 'Clínico Geral');
+INSERT INTO "medico" ("nome", "crm", "especialidade") VALUES ('Felipe', '456', 'Neurologista');
+INSERT INTO "medico" ("nome", "crm", "especialidade") VALUES ('Pedro', '789', 'Cardiologista');
