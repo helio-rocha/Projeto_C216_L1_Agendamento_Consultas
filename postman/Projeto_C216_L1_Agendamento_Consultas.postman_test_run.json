@@ -1,0 +1,484 @@
+{
+	"id": "edd10afc-acfb-470e-a636-cc86481dde02",
+	"name": "Projeto_C216_L1_Agendamento_Consultas",
+	"timestamp": "2024-12-07T18:12:39.865Z",
+	"collection_id": "5261509-3d8fd775-9c2c-434d-83b7-850ca2c2dca8",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 27,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-12-07T18:12:38.088Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "e37365ab-dd36-44b5-9630-61b64b72eea7",
+			"name": "DELETE - Remover Todos os os médicos (RESETAR BANCO DE DADOS)",
+			"url": "http://127.0.0.1:8000/api/v1/medicos/",
+			"time": 43,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm deletion": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm deletion": true
+				}
+			]
+		},
+		{
+			"id": "dd7ad252-366f-4e88-8daf-684cc56205d9",
+			"name": "GET - Listar todos os médicos",
+			"url": "http://127.0.0.1:8000/api/v1/medicos/",
+			"time": 35,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should be a list": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be a list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should be a list": true
+				}
+			]
+		},
+		{
+			"id": "f137a4a9-405e-421f-b2f8-3f6cc14b620a",
+			"name": "GET - Buscar Médico por ID",
+			"url": "http://127.0.0.1:8000/api/v1/medicos/1",
+			"time": 36,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should contain component details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should contain component details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should contain component details": true
+				}
+			]
+		},
+		{
+			"id": "8602c50e-651c-4eca-96f3-1e6586d26060",
+			"name": "POST - Adicionar um Médico",
+			"url": "http://127.0.0.1:8000/api/v1/medicos/",
+			"time": 42,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response should contain confirmation message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should contain confirmation message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				42
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response should contain confirmation message": true
+				}
+			]
+		},
+		{
+			"id": "a16f16f5-e1ee-46b5-94cc-1e66b8845e5f",
+			"name": "PATCH - Atualizar Atributos de um Médico",
+			"url": "http://127.0.0.1:8000/api/v1/medicos/2",
+			"time": 38,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm update": true,
+				"Os atributos do médico foram atualizados": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm update": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Os atributos do médico foram atualizados": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				38
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm update": true,
+					"Os atributos do médico foram atualizados": true
+				}
+			]
+		},
+		{
+			"id": "442d76c5-6a30-48d4-a793-99390cc9198e",
+			"name": "DELETE - Remover um Médico",
+			"url": "http://127.0.0.1:8000/api/v1/medicos/1",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm deletion": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm deletion": true
+				}
+			]
+		},
+		{
+			"id": "9063341c-4daa-46fb-9d8e-2097909af2f0",
+			"name": "POST - Marcar uma consulta",
+			"url": "http://127.0.0.1:8000/api/v1/consultas/",
+			"time": 41,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response should confirm appointment": true,
+				"Consulta foi criada": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm appointment": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Consulta foi criada": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				41
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response should confirm appointment": true,
+					"Consulta foi criada": true
+				}
+			]
+		},
+		{
+			"id": "bee60546-1a1c-4800-b0e6-9db590cb87f5",
+			"name": "GET - Listar todas as consultas",
+			"url": "http://127.0.0.1:8000/api/v1/consultas/",
+			"time": 40,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm appointment details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm appointment details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				40
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm appointment details": true
+				}
+			]
+		},
+		{
+			"id": "e3a986fb-87f3-4745-8a10-0d8c5ddcc91f",
+			"name": "GET - Buscar Consulta por ID",
+			"url": "http://127.0.0.1:8000/api/v1/consultas/1",
+			"time": 35,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should contain appointment details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should contain appointment details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should contain appointment details": true
+				}
+			]
+		},
+		{
+			"id": "d2e63944-6dd1-43dd-9e07-7ff233af921e",
+			"name": "PATCH - Atualizar Atributos de uma consulta",
+			"url": "http://127.0.0.1:8000/api/v1/consultas/1",
+			"time": 39,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm update": true,
+				"Os atributos da consulta foram atualizados": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm update": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Os atributos da consulta foram atualizados": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				39
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm update": true,
+					"Os atributos da consulta foram atualizados": true
+				}
+			]
+		},
+		{
+			"id": "820a9cc8-ef22-4bf1-a928-06d7b14cd571",
+			"name": "DELETE - Remover uma consulta",
+			"url": "http://127.0.0.1:8000/api/v1/consultas/1",
+			"time": 36,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm deletion": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm deletion": true
+				}
+			]
+		},
+		{
+			"id": "937ee76f-09f0-4b7f-b3a0-759f3c5639fb",
+			"name": "DELETE - Remover Todos os Médicos (RESETAR REPOSITORIO)",
+			"url": "http://127.0.0.1:8000/api/v1/medicos/",
+			"time": 39,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm deletion": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				39
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm deletion": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 461,
+	"collection": {
+		"requests": [
+			{
+				"id": "e37365ab-dd36-44b5-9630-61b64b72eea7",
+				"method": "DELETE"
+			},
+			{
+				"id": "dd7ad252-366f-4e88-8daf-684cc56205d9",
+				"method": "GET"
+			},
+			{
+				"id": "f137a4a9-405e-421f-b2f8-3f6cc14b620a",
+				"method": "GET"
+			},
+			{
+				"id": "8602c50e-651c-4eca-96f3-1e6586d26060",
+				"method": "POST"
+			},
+			{
+				"id": "a16f16f5-e1ee-46b5-94cc-1e66b8845e5f",
+				"method": "PATCH"
+			},
+			{
+				"id": "442d76c5-6a30-48d4-a793-99390cc9198e",
+				"method": "DELETE"
+			},
+			{
+				"id": "9063341c-4daa-46fb-9d8e-2097909af2f0",
+				"method": "POST"
+			},
+			{
+				"id": "bee60546-1a1c-4800-b0e6-9db590cb87f5",
+				"method": "GET"
+			},
+			{
+				"id": "e3a986fb-87f3-4745-8a10-0d8c5ddcc91f",
+				"method": "GET"
+			},
+			{
+				"id": "d2e63944-6dd1-43dd-9e07-7ff233af921e",
+				"method": "PATCH"
+			},
+			{
+				"id": "820a9cc8-ef22-4bf1-a928-06d7b14cd571",
+				"method": "DELETE"
+			},
+			{
+				"id": "937ee76f-09f0-4b7f-b3a0-759f3c5639fb",
+				"method": "DELETE"
+			}
+		]
+	}
+}
