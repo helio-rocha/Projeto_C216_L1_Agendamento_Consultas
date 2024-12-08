@@ -89,14 +89,14 @@
 			},
 			"tests": {
 				"Status code is 200": true,
-				"Response should contain component details": true
+				"Response should contain medic details": true
 			},
 			"testPassFailCounts": {
 				"Status code is 200": {
 					"pass": 1,
 					"fail": 0
 				},
-				"Response should contain component details": {
+				"Response should contain medic details": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -107,7 +107,7 @@
 			"allTests": [
 				{
 					"Status code is 200": true,
-					"Response should contain component details": true
+					"Response should contain medic details": true
 				}
 			]
 		},

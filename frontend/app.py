@@ -53,7 +53,7 @@ def listar_medicos():
 @app.route('/atualizar/<int:medico_id>', methods=['GET'])
 def atualizar_medico_form(medico_id):
     response = requests.get(f"{API_BASE_URL}/api/v1/medicos/")
-    #filtrando apenas o componente correspondente ao ID
+    #filtrando apenas o medico correspondente ao ID
     medicos = [medico for medico in response.json() if medico['id'] == medico_id]
     if len(medicos) == 0:
         return "Médico não encontrado", 404
@@ -135,7 +135,7 @@ def marcar_consulta(medico_id):
 @app.route('/atualizar_consulta/<int:consulta_id>', methods=['GET'])
 def atualizar_consulta_form(consulta_id):
     response = requests.get(f"{API_BASE_URL}/api/v1/consultas/")
-    #filtrando apenas o componente correspondente ao ID
+    #filtrando apenas a consulta correspondente ao ID
     consultas = [consulta for consulta in response.json() if consulta['id'] == consulta_id]
     if len(consultas) == 0:
         return "Consulta não encontrado", 404

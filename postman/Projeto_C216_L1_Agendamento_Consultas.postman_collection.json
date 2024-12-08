@@ -100,7 +100,7 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"Response should contain component details\", function () {\r",
+							"pm.test(\"Response should contain medic details\", function () {\r",
 							"    pm.expect(pm.response.json()).to.have.property('nome');\r",
 							"    pm.expect(pm.response.json()).to.have.property('crm');\r",
 							"    pm.expect(pm.response.json()).to.have.property('especialidade');\r",
